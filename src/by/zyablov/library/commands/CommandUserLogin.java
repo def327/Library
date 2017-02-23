@@ -1,6 +1,8 @@
 package by.zyablov.library.commands;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import by.zyablov.library.beans.User;
 import by.zyablov.library.dao.DaoUser;
 import by.zyablov.library.dao.interfaces.DaoBehaviorUser;
@@ -39,7 +41,7 @@ public class CommandUserLogin implements CommandBehavior {
 
 				if (authenticationStatus) {
 
-					return getPageByUserAuthorityType(userFromDataSource);
+					return getPageByUserAuthorityType(userFromDataSource, request);
 
 				} else {
 
@@ -63,8 +65,10 @@ public class CommandUserLogin implements CommandBehavior {
 	 *
 	 * @param userFromDataSource
 	 *            An initialized {@code User} object from datasource.
+	 * @param request
+	 * @throws DaoException
 	 */
-	private String getPageByUserAuthorityType(User userFromDataSource) {
+	private String getPageByUserAuthorityType(User userFromDataSource, HttpServletRequest request) throws DaoException {
 
 		int userAuthorityType = userFromDataSource.getAuthorityType().getId();
 
@@ -72,6 +76,7 @@ public class CommandUserLogin implements CommandBehavior {
 
 		case CLIENT_AUTHORITY_TYPE: {
 
+			setAttributeElementsToSession(userFromDataSource, request);
 			return JSP_CLIENT_PROFILE_PAGE;
 		}
 
@@ -84,6 +89,12 @@ public class CommandUserLogin implements CommandBehavior {
 			return MAIN_PAGE;
 		}
 		}
+	}
+
+	private void setAttributeElementsToSession(User userFromDataSource, HttpServletRequest request)
+			throws DaoException {
+		HttpSession session = request.getSession(true);
+		session.setAttribute("user", userFromDataSource);
 	}
 
 	/**

@@ -3,6 +3,9 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
+	<listener>
+		<listener-class>by.zyablov.library.events.AppContextEvent</listener-class>
+	</listener>
 	<display-name>WebLibraryProject</display-name>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -23,7 +26,6 @@
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 	</filter-mapping>
-
 	<servlet>
 		<servlet-name>LoginController</servlet-name>
 		<servlet-class>by.zyablov.library.controllers.LoginController</servlet-class>
@@ -33,7 +35,6 @@
 		<servlet-name>LoginController</servlet-name>
 		<url-pattern>/LoginController</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>RegistrateController</servlet-name>
 		<servlet-class>by.zyablov.library.controllers.RegistrateController</servlet-class>
@@ -44,7 +45,13 @@
 		<url-pattern>/RegistrateController</url-pattern>
 	</servlet-mapping>
 
-
-
-
+	<servlet>
+		<servlet-name>AddNewBookController</servlet-name>
+		<servlet-class>by.zyablov.library.controllers.AddNewBookController</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddNewBookController</servlet-name>
+		<url-pattern>/AddNewBookController</url-pattern>
+	</servlet-mapping>
 </web-app>

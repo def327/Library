@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import by.zyablov.library.beans.Categorie;
 import by.zyablov.library.dao.interfaces.DaoBehaviorCategorie;
@@ -45,7 +47,7 @@ public class DaoCategorie extends DaoAbstract implements DaoBehaviorCategorie {
 				do {
 
 					categorieObjectFromDataBase.setId(result.getInt(ID_CATEGORIE));
-					categorieObjectFromDataBase.setCategorie_name(result.getString(CATEGORIE_NAME));
+					categorieObjectFromDataBase.setCategorieName(result.getString(CATEGORIE_NAME));
 
 				} while (result.next());
 			}
@@ -94,6 +96,90 @@ public class DaoCategorie extends DaoAbstract implements DaoBehaviorCategorie {
 		}
 
 		return categorieObjectFromDataBase;
+	}
+
+	@Override
+	public List<Categorie> getListOfCategories() throws DaoException {
+
+		final int ID_CATEGORIE = 1;
+
+		final int CATEGORIE_NAME = 2;
+
+		List<Categorie> listOfCategories = null;
+
+		Connection connectionToDataBase = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet result = null;
+
+		try {
+
+			connectionToDataBase = super.dataSource.getConnection();
+
+			preparedStatement = connectionToDataBase
+					.prepareStatement(super.managerSQL.getPreparedSqlRequest(ManagerSQL.SQL_GET_CATEGORIE_LIST));
+
+			result = preparedStatement.executeQuery();
+
+			if (result.next()) {
+
+				listOfCategories = new LinkedList<>();
+
+				do {
+
+					Categorie categorieObjectFromDataBase = new Categorie();
+
+					categorieObjectFromDataBase.setId(result.getInt(ID_CATEGORIE));
+					categorieObjectFromDataBase.setCategorieName(result.getString(CATEGORIE_NAME));
+
+					listOfCategories.add(categorieObjectFromDataBase);
+
+				} while (result.next());
+			}
+
+		} catch (SQLException e) {
+
+			// Logging
+
+			DataBaseManager.getInstance().closeDataBaseManager();
+			ManagerSQL.getInstance().closeManagerSql();
+
+			throw new DaoException();
+
+		} finally {
+
+			if (result != null)
+
+				try {
+					result.close();
+
+				} catch (SQLException ignore) {
+
+					// Logging
+				}
+
+			if (preparedStatement != null)
+
+				try {
+					preparedStatement.close();
+
+				} catch (SQLException ignore) {
+
+					// Logging
+				}
+
+			if (connectionToDataBase != null)
+
+				try {
+					connectionToDataBase.close();
+
+				} catch (SQLException ignore) {
+
+					// Logging
+				}
+
+		}
+
+		return listOfCategories;
 	}
 
 }

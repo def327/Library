@@ -4,17 +4,17 @@ public class Categorie extends Entity {
 
 	private static final long serialVersionUID = -7260973418173770999L;
 	
-	String categorie_name;
+	String categorieName;
 
 	public Categorie() {
 	}
 
-	public String getCategorie_name() {
-		return categorie_name;
+	public String getCategorieName() {
+		return categorieName;
 	}
 
-	public void setCategorie_name(String categorie_name) {
-		this.categorie_name = categorie_name;
+	public void setCategorieName(String categorie_name) {
+		this.categorieName = categorie_name;
 	}
 	
 	

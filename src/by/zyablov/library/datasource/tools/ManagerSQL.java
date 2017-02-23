@@ -25,6 +25,7 @@ public class ManagerSQL implements ManagerSQLBehavior {
 
 	// Categorie DAO
 	public static final String SQL_GET_CATEGORIE = "SQL_GET_CATEGORIE";
+	public static final String SQL_GET_CATEGORIE_LIST = "SQL_GET_CATEGORIE_LIST";
 
 	// Book DAO
 	public static final String SQL_GET_BOOK_LIST = "SQL_GET_BOOK_LIST";

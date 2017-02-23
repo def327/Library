@@ -233,10 +233,10 @@ public class DaoBook extends DaoAbstract implements DaoBehaviorBook {
 			connectionToDataBase = super.dataSource.getConnection();
 
 			preparedStatement = connectionToDataBase
-					.prepareStatement(super.managerSQL.getPreparedSqlRequest(ManagerSQL.SQL_ADD_NEW_USER));
+					.prepareStatement(super.managerSQL.getPreparedSqlRequest(ManagerSQL.SQL_ADD_NEW_BOOK));
 
 			preparedStatement.setString(QUERY_POSITION_BOOK_NAME, book.getBookName());
-			preparedStatement.setString(QUERY_POSITION_BOOK_PRICE, book.getBookPrice());
+			preparedStatement.setInt(QUERY_POSITION_BOOK_PRICE,Integer.parseInt(book.getBookPrice()));
 			preparedStatement.setString(QUERY_POSITION_BOOK_DESCIPTION, book.getBookReleaseDate());
 			preparedStatement.setString(QUERY_POSITION_BOOK_RELEASE_DATE, book.getBookReleaseDate());
 			preparedStatement.setInt(QUERY_POSITION_ID_CATEGORIE, book.getBookCategorie().getId());
