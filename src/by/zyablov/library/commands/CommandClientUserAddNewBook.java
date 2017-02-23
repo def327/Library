@@ -7,6 +7,7 @@ import by.zyablov.library.beans.Categorie;
 import by.zyablov.library.dao.DaoBook;
 import by.zyablov.library.dao.interfaces.DaoBehaviorBook;
 import by.zyablov.library.exceptions.DaoException;
+import by.zyablov.library.services.AppServiceServletContext;
 
 public class CommandClientUserAddNewBook implements CommandBehavior {
 
@@ -36,6 +37,9 @@ public class CommandClientUserAddNewBook implements CommandBehavior {
 
 		try {
 			dao.addNewBook(newBook);
+
+			AppServiceServletContext.setServLetContextObjectBooksList(request.getServletContext());
+
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
