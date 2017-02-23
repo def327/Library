@@ -6,7 +6,7 @@ public class Categorie extends Entity {
 	
 	String categorie_name;
 
-	public Categorie(String categorie_name) {
+	public Categorie() {
 	}
 
 	public String getCategorie_name() {

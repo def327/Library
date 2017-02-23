@@ -23,7 +23,15 @@ public class ManagerSQL implements ManagerSQLBehavior {
 	public static final String SQL_GET_USER = "SQL_GET_USER";
 	public static final String SQL_ADD_NEW_USER = "SQL_ADD_NEW_USER";
 
+	// Categorie DAO
+	public static final String SQL_GET_CATEGORIE = "SQL_GET_CATEGORIE";
 
+	// Book DAO
+	public static final String SQL_GET_BOOK_LIST = "SQL_GET_BOOK_LIST";
+	public static final String SQL_GET_BOOK = "SQL_GET_BOOK";
+	public static final String SQL_ADD_NEW_BOOK = "SQL_ADD_NEW_BOOK";
+	public static final String SQL_UPDATE_BOOK_NAME = "SQL_UPDATE_BOOK_NAME";
+	public static final String SQL_UPDATE_BOOK_DESCRIPTION = "SQL_UPDATE_BOOK_DESCRIPTION";
 
 	/**
 	 * An instance of {@code ManagerSQL} object.
